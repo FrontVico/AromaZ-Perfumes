@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AromaZ - Perfumaria Artesanal</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">AROMA<span>Z</span></a>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="pages/produtos.html">Perfumes</a>
+                <a href="pages/sobre.html">Sobre</a>
+                <a href="#" class="cart-icon" id="cartIcon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="pages/login.html" class="btn-outline">Área Restrita</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="pages/produtos.html">Perfumes</a>
+            <a href="pages/sobre.html">Sobre</a>
+            <a href="pages/login.html">Área Restrita</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-subtitle">Art & Perfumery</span>
+            <h1 class="hero-title">A Arte dos<br> Sentidos</h1>
+            <p class="hero-description">
+                Fragrâncias exclusivas que contam histórias.<br>
+                Descubra a essência da sofisticação.
+            </p>
+            <div class="hero-buttons">
+                <a href="pages/produtos.html" class="btn-primary">Explorar Coleção</a>
+                <a href="pages/sobre.html" class="btn-outline-dark">Conhecer História</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Background image set in CSS -->
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="featured">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Mais Vendidos</span>
+                <h2 class="section-title">Nossos Clássicos</h2>
+            </div>
+
+            <div class="featured-grid" id="featuredProducts">
+                <!-- Products will be loaded via JS -->
+                <div class="product-card skeleton">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <div class="product-category"></div>
+                        <div class="product-name"></div>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+                <div class="product-card skeleton">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <div class="product-category"></div>
+                        <div class="product-name"></div>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+                <div class="product-card skeleton">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <div class="product-category"></div>
+                        <div class="product-name"></div>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Categorias</span>
+                <h2 class="section-title">Descubra por Família Olfativa</h2>
+            </div>
+
+            <div class="categories-grid">
+                <a href="pages/produtos.html?categoria=citrico" class="category-card">
+                    <div class="category-icon">🍊</div>
+                    <h3>Cítrico</h3>
+                    <p>Frescor e energia</p>
+                </a>
+                <a href="pages/produtos.html?categoria=amadeirado" class="category-card">
+                    <div class="category-icon">🌳</div>
+                    <h3>Amadeirado</h3>
+                    <p>Elegância e sofisticação</p>
+                </a>
+                <a href="pages/produtos.html?categoria=oriental" class="category-card">
+                    <div class="category-icon">🌙</div>
+                    <h3>Oriental</h3>
+                    <p>Mistério e sedução</p>
+                </a>
+                <a href="pages/produtos.html?categoria=floral" class="category-card">
+                    <div class="category-icon">🌸</div>
+                    <h3>Floral</h3>
+                    <p>Romantismo e delicadeza</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-subtitle">Nossa História</span>
+                    <h2 class="section-title">A Perfumaria Como Arte</h2>
+                    <p>
+                        Desde 2015, a AromaZ se dedica a criar experiências olfativas únicas. 
+                        Cada fragrância é cuidadosamente desenvolvida para contar uma história 
+                        e despertar emoções.
+                    </p>
+                    <p>
+                        Utilizamos as melhores matérias-primas e seguimos técnicas tradicionais 
+                        francesas combinadas com inovação brasileira.
+                    </p>
+                    <a href="pages/sobre.html" class="btn-outline-dark">Conheça Mais</a>
+                </div>
+                <div class="about-image">
+                    <!-- Background image set in CSS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Receba Novidades</h2>
+                <p>Assine nossa newsletter e seja o primeiro a conhecer lançamentos</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Seu melhor e-mail" required>
+                    <button type="submit" class="btn-primary">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>AROMA<span>Z</span></h4>
+                    <p>Perfumaria artesanal de alta performance. Criando memórias através dos aromas.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/produtos.html">Perfumes</a></li>
+                        <li><a href="pages/sobre.html">Sobre Nós</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>contato@aromaz.com.br</li>
+                        <li>(11) 99999-9999</li>
+                        <li>São Paulo, SP</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">📱</a>
+                        <a href="#" aria-label="Facebook">💬</a>
+                        <a href="#" aria-label="WhatsApp">📞</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AromaZ. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
