@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AromaZ - Área Restrita</title>
+    <title>AromaZ - Nossos Perfumes</title>
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/produtos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,9 +15,10 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="logo">AROMA<span>Z</span></a>
+            
             <div class="nav-links">
                 <a href="../index.html">Home</a>
-                <a href="produtos.html">Perfumes</a>
+                <a href="produtos.html" class="active">Perfumes</a>
                 <a href="sobre.html">Sobre</a>
                 <a href="#" class="cart-icon" id="cartIcon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -27,14 +28,16 @@
                     </svg>
                     <span class="cart-count">0</span>
                 </a>
-                <a href="login.html" class="btn-outline active">Área Restrita</a>
+                <a href="login.html" class="btn-outline">Área Restrita</a>
             </div>
+
             <button class="mobile-menu" id="mobileMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
+
         <div class="mobile-nav" id="mobileNav">
             <a href="../index.html">Home</a>
             <a href="produtos.html">Perfumes</a>
@@ -43,224 +46,212 @@
         </div>
     </nav>
 
-    <!-- Login Container (sempre visível inicialmente, será ocultado se admin logado) -->
-    <div class="login-container" id="loginContainer">
-        <!-- Admin Login Card -->
-        <div class="login-card admin-card">
-            <div class="login-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                </svg>
-            </div>
-            <h2>Administrador</h2>
-            <p>Acesso ao painel administrativo</p>
-            <form id="adminLoginForm">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="adminEmail" placeholder="admin@aromaz.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Senha</label>
-                    <input type="password" id="adminPassword" placeholder="••••••" required>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Entrar como Admin</button>
-            </form>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Nossos Perfumes</h1>
+            <p>Descubra a coleção completa de fragrâncias exclusivas</p>
         </div>
+    </section>
 
-        <!-- Client Login Card -->
-        <div class="login-card client-card">
-            <div class="login-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-wrapper">
+                <div class="filter-group">
+                    <label for="categoryFilter">Categoria</label>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">Todas as categorias</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="unissex">Unissex</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortFilter">Ordenar por</label>
+                    <select id="sortFilter" class="filter-select">
+                        <option value="recentes">Mais recentes</option>
+                        <option value="menorPreco">Menor preço</option>
+                        <option value="maiorPreco">Maior preço</option>
+                        <option value="nome">Nome</option>
+                    </select>
+                </div>
+
+                <div class="filter-group search-group">
+                    <label for="searchInput">Buscar</label>
+                    <input type="text" id="searchInput" class="filter-select" placeholder="Buscar perfume...">
+                </div>
             </div>
-            <h2>Cliente</h2>
-            <p>Acesse sua conta para comprar</p>
-            <form id="clientLoginForm">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="clientEmail" placeholder="cliente@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Senha</label>
-                    <input type="password" id="clientPassword" placeholder="••••••" required>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Entrar como Cliente</button>
-            </form>
-            <div class="login-divider">ou</div>
-            <button class="btn-outline" style="width: 100%;" onclick="showClientRegister()">Criar Nova Conta</button>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Carregando perfumes...</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid"></div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults">
+                <p>Nenhum perfume encontrado</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detalhes do Perfume</h2>
+                <button class="close-modal" onclick="closeProductModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="productModalBody"></div>
         </div>
     </div>
 
-    <!-- Admin Dashboard (inicialmente oculto) -->
-    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
-        <div class="admin-header">
-            <h2>Painel Administrativo</h2>
-            <button class="btn-outline" onclick="adminLogout()">Sair</button>
-        </div>
-
-        <!-- Admin Tabs -->
-        <div class="admin-tabs">
-            <button class="admin-tab active" onclick="switchAdminTab('dashboard')">Dashboard</button>
-            <button class="admin-tab" onclick="switchAdminTab('products')">Produtos</button>
-            <button class="admin-tab" onclick="switchAdminTab('orders')">Pedidos</button>
-            <button class="admin-tab" onclick="switchAdminTab('users')">Usuários</button>
-        </div>
-
-        <!-- Dashboard Tab -->
-        <div class="admin-tab-content active" id="dashboardTab">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total de Produtos</h3>
-                    <div class="stat-value" id="totalProducts">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Total de Pedidos</h3>
-                    <div class="stat-value" id="totalOrders">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Total de Clientes</h3>
-                    <div class="stat-value" id="totalUsers">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Faturamento</h3>
-                    <div class="stat-value" id="totalRevenue">R$ 0</div>
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-overlay" onclick="closeCartModal()"></div>
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h2>Seu Carrinho</h2>
+                <button class="close-cart" onclick="closeCartModal()">&times;</button>
+            </div>
+            
+            <div class="cart-modal-body" id="cartModalBody">
+                <div class="cart-empty">
+                    <span class="cart-empty-icon">🛒</span>
+                    <p>Seu carrinho está vazio</p>
+                    <button class="btn-outline-dark" onclick="closeCartModal()">Continuar Comprando</button>
                 </div>
             </div>
-            <div class="recent-orders">
-                <h3>Pedidos Recentes</h3>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr><th>Pedido</th><th>Cliente</th><th>Valor</th><th>Status</th><th>Data</th></tr>
-                        </thead>
-                        <tbody id="recentOrdersBody">
-                            <tr><td colspan="5" style="text-align: center;">Nenhum pedido encontrado</td></tr>
-                        </tbody>
-                    </table>
+            
+            <div class="cart-modal-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="cart-total-value" id="cartTotal">R$ 0,00</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- Products Tab -->
-        <div class="admin-tab-content" id="productsTab">
-            <div class="admin-header">
-                <h3>Gerenciar Produtos</h3>
-                <button class="btn-primary" onclick="showAddProductModal()">+ Novo Produto</button>
-            </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr><th>Imagem</th><th>Nome</th><th>Categoria</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr>
-                    </thead>
-                    <tbody id="productsBody">
-                        <tr><td colspan="6" style="text-align: center;">Carregando produtos...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Orders Tab -->
-        <div class="admin-tab-content" id="ordersTab">
-            <h3>Todos os Pedidos</h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr><th>ID</th><th>Cliente</th><th>Itens</th><th>Total</th><th>Status</th><th>Data</th><th>Ações</th></tr>
-                    </thead>
-                    <tbody id="ordersBody">
-                        <tr><td colspan="7" style="text-align: center;">Carregando pedidos...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Users Tab -->
-        <div class="admin-tab-content" id="usersTab">
-            <h3>Usuários</h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr><th>Email</th><th>Nome</th><th>Tipo</th><th>Data</th><th>Ações</th></tr>
-                    </thead>
-                    <tbody id="usersBody">
-                        <tr><td colspan="5" style="text-align: center;">Carregando usuários...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Product Modal (Add/Edit) - dentro do dashboard, só acessível por admin -->
-        <div class="modal" id="productAdminModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 id="productModalTitle">Novo Produto</h2>
-                    <button class="close-modal" onclick="closeProductAdminModal()">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form id="productAdminForm">
-                        <input type="hidden" id="productId">
-                        <div class="form-group">
-                            <label>Nome do Produto</label>
-                            <input type="text" id="productName" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Descrição</label>
-                            <textarea id="productDescription" rows="3" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Categoria</label>
-                            <select id="productCategory" required>
-                                <option value="">Selecione</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="unissex">Unissex</option>
-                            </select>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Preço (R$)</label>
-                                <input type="number" id="productPrice" step="0.01" min="0" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Estoque</label>
-                                <input type="number" id="productStock" min="0" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Imagem do Produto</label>
-                            <div class="file-upload-area" id="fileUploadArea">
-                                <input type="file" id="productImage" accept="image/*" style="display: none;">
-                                <div class="upload-preview" id="uploadPreview">
-                                    <img src="" alt="Preview" id="imagePreview" style="display: none;">
-                                    <div class="upload-placeholder" id="uploadPlaceholder">
-                                        <span class="upload-icon">📸</span>
-                                        <p>Clique para fazer upload da imagem</p>
-                                        <small>PNG, JPG até 5MB</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" class="btn-outline" onclick="closeProductAdminModal()">Cancelar</button>
-                            <button type="submit" class="btn-primary">Salvar Produto</button>
-                        </div>
-                    </form>
-                </div>
+                <button class="btn-primary" onclick="openCheckoutModal()" id="checkoutBtn">
+                    Finalizar Compra
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Finalizar Compra</h2>
+                <button class="close-modal" onclick="closeCheckoutModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" id="checkoutName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="checkoutEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="tel" id="checkoutPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Endereço</label>
+                        <input type="text" id="checkoutAddress" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Forma de Pagamento</label>
+                        <select id="checkoutPayment" required>
+                            <option value="">Selecione</option>
+                            <option value="pix">PIX</option>
+                            <option value="credit">Cartão de Crédito</option>
+                            <option value="debit">Cartão de Débito</option>
+                            <option value="boleto">Boleto</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkout-summary">
+                        <h3>Resumo do Pedido</h3>
+                        <div id="checkoutItems"></div>
+                        <div class="checkout-total">
+                            <strong>Total:</strong>
+                            <strong id="checkoutTotal">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Confirmar Compra
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Receba Novidades</h2>
+                <p>Assine nossa newsletter e seja o primeiro a conhecer lançamentos</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Seu melhor e-mail" required>
+                    <button type="submit" class="btn-primary">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>AROMA<span>Z</span></h4>
+                    <p>Perfumaria artesanal de alta performance. Criando memórias através dos aromas desde 2015.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="produtos.html">Perfumes</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>contato@aromaz.com.br</li>
+                        <li>(11) 99999-9999</li>
+                        <li>São Paulo, SP</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">📱</a>
+                        <a href="#" aria-label="Facebook">💬</a>
+                        <a href="#" aria-label="WhatsApp">📞</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AromaZ. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
-    <script src="../js/login.js"></script>
+    <script src="../js/produtos.js"></script>
 </body>
 </html>
